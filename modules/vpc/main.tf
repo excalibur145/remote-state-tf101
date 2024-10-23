@@ -80,7 +80,7 @@ resource "aws_instance" "ubuntu" {
     device_index         = 0
   }
 
-    user_data = var.user_data_script
+  user_data = var.user_data_script
   tags = {
     Name = "web-server"
   }

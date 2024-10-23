@@ -1,14 +1,14 @@
 # For VPC
 We need to specify CIDR block, nic-id and internet gateway id reference (from internet module),
-subnet availibility zone, and ec2 instance config
+subnet availibility zone, and ec2 instance config and script
 
 # For Internet
 We need to specify vpc id reference, subnet cidr, subnet availibility zone and security group id (from vpc module)
 
 
-<!-- example: -->
+example: -->
 
-<!-- # Declare VPC module
+# Declare VPC module
 module "vpc" {
   source    = "git::https://github.com/excalibur145/remote-state-tf101.git//modules/vpc?ref=master"
   cidr_block = "10.0.0.0/16"
@@ -33,4 +33,4 @@ module "internet" {
   sg-id         = module.vpc.sg  
 }
 
- -->
+
