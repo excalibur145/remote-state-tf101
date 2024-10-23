@@ -8,18 +8,18 @@ resource "aws_vpc" "uj-vpc" {
 
 
 locals {
-  ingress_rules=[
+  ingress_rules = [
     {
-        port = 22
-        description= "SSH"
+      port        = 22
+      description = "SSH"
     },
     {
-        port= 80
-        description="HTTP"
+      port        = 80
+      description = "HTTP"
     },
     {
-        port= 443
-        description="HTTPS"
+      port        = 443
+      description = "HTTPS"
     }
   ]
 }
@@ -31,25 +31,25 @@ resource "aws_security_group" "allow-web" {
   vpc_id      = aws_vpc.uj-vpc.id
 
 
-    dynamic "ingress" {
-      for_each = local.ingress_rules
-        iterator = rule
+  dynamic "ingress" {
+    for_each = local.ingress_rules
+    iterator = rule
 
-      content {
-        description = rule.value.description
-        from_port = rule.value.port
-        to_port = rule.value.port
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-      }
+    content {
+      description = rule.value.description
+      from_port   = rule.value.port
+      to_port     = rule.value.port
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
     }
+  }
 
-     egress {
-         from_port   = 0
-         to_port     = 0
-         protocol    = "-1"
-         cidr_blocks = ["0.0.0.0/0"]
-       }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   tags = {
     Name = "allow_web"
@@ -63,7 +63,7 @@ resource "aws_eip" "eip1" {
   network_interface         = var.nic-id
   associate_with_private_ip = "10.0.1.50"
   depends_on = [
-    var.igw-id, 
+    var.igw-id,
     aws_instance.ubuntu
   ]
 
@@ -84,4 +84,4 @@ resource "aws_instance" "ubuntu" {
   tags = {
     Name = "web-server"
   }
-}  
+}

@@ -1,19 +1,19 @@
 variable "cidr_block" {
-  type= string
+  type    = string
   default = "10.0.0.0/16"
 }
 
 variable "nic-id" {
-  type=string
+  type = string
 }
 
 variable "igw-id" {
- type=string 
+  type = string
 }
 
 
 variable "subnet_az" {
-  type = string
+  type    = string
   default = "us-east-1a"
 }
 
@@ -36,6 +36,6 @@ variable "user_data_script" {
 }
 
 variable "key-name" {
-  type = string
+  type        = string
   description = "add the name of your ppk key"
 }
