@@ -34,3 +34,8 @@ variable "user_data_script" {
   description = "Path to the user data script"
   type        = string
 }
+
+variable "key-name" {
+  type = string
+  description = "add the name of your ppk key"
+}

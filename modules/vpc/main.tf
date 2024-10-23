@@ -73,7 +73,7 @@ resource "aws_instance" "ubuntu" {
   ami               = var.ec2_config.ami
   instance_type     = var.ec2_config.instance_type
   availability_zone = var.subnet_az
-  key_name          = "Terraform-test-key"
+  key_name          = var.key-name
 
   network_interface {
     network_interface_id = var.nic-id

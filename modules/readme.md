@@ -1,6 +1,6 @@
 # For VPC
 We need to specify CIDR block, nic-id and internet gateway id reference (from internet module),
-subnet availibility zone, and ec2 instance config and script
+subnet availibility zone, and ec2 instance config, key-name and user-script
 
 # For Internet
 We need to specify vpc id reference, subnet cidr, subnet availibility zone and security group id (from vpc module)
@@ -15,7 +15,7 @@ module "vpc" {
   
   nic-id     = module.internet.nic
   igw-id     = module.internet.igw-id
-
+  key-name   = "Terraform-test-key"
   subnet_az        = "us-east-1a"  
   ec2_config = {
         ami = "ami-0866a3c8686eaeeba"
