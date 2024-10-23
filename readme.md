@@ -6,10 +6,9 @@ subnet availibility zone, and ec2 instance config, key-name and user-script
 We need to specify vpc id reference, subnet cidr, subnet availibility zone and security group id (from vpc module)
 
 
-example: --> you can see in the code how to declare the file with module in main.
+example: --> 
 
-
-<!-- 
+```
 # Declare VPC module
 module "vpc" {
   source    = "git::https://github.com/excalibur145/remote-state-tf101.git//modules/vpc?ref=master"
@@ -34,6 +33,24 @@ module "internet" {
   subnet_az     = "us-east-1a"    
   sg-id         = module.vpc.sg  
 }
- -->
+```
 
 
+# for web.sh 
+you can give a shell script for initial commands that instance needs to run, also you can give any name you want, give that name when calling user_data_script in vpc module
+example script for web.sh: 
+
+```
+#!/bin/bash
+
+sudo apt-get update
+sudo apt update -y
+sudo ufw disable
+sudo apt install apache2 -y
+sudo systemctl start apache2
+sudo systemctl enable apache2
+echo "my first web server with terraform" | sudo tee /var/www/html/index.html > /dev/null
+sudo systemctl restart apache2
+sudo systemctl status apache2
+
+```
