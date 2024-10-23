@@ -6,8 +6,10 @@ subnet availibility zone, and ec2 instance config, key-name and user-script
 We need to specify vpc id reference, subnet cidr, subnet availibility zone and security group id (from vpc module)
 
 
-example: -->
+example: --> you can see in the code how to declare the file with module in main.
 
+
+<!-- 
 # Declare VPC module
 module "vpc" {
   source    = "git::https://github.com/excalibur145/remote-state-tf101.git//modules/vpc?ref=master"
@@ -32,5 +34,6 @@ module "internet" {
   subnet_az     = "us-east-1a"    
   sg-id         = module.vpc.sg  
 }
+ -->
 
 
