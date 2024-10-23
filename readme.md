@@ -17,7 +17,8 @@ We need to specify
 2) subnet cidr
 3) subnet availibility zone 
 4) security group id (from vpc module) like-
-    ``` vpc-id = module.vpc.vpc-id 
+    ``` 
+    vpc-id = module.vpc.vpc-id 
     ```
     or give your own sg id.
 
