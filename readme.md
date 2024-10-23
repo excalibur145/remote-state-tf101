@@ -2,8 +2,10 @@
 We need to specify 
 1) CIDR block
 2) Either give your own Nic and igw id or use internet module reference as:
+ ``` 
   nic-id     = module.internet.nic
-  igw-id     = module.internet.igw-id
+  igw-id     = module.internet.igw-id 
+  ```
 3) subnet availibility zone
 4) ec2 instance config - ami and instance type
 5) key-name 
@@ -15,7 +17,8 @@ We need to specify
 2) subnet cidr
 3) subnet availibility zone 
 4) security group id (from vpc module) like-
-    vpc-id = module.vpc.vpc-id
+    ``` vpc-id = module.vpc.vpc-id 
+    ```
     or give your own sg id.
 
 
