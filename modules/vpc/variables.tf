@@ -35,10 +35,10 @@ variable "user_data_script" {
   type        = string
 }
 
-# variable "key-name" {
-#   description = "add the name of your ppk key"
-#   type        = string
-# }
+variable "key-name" {
+  description = "add the name of your ppk key"
+  type        = string
+}
 
 
 variable "ingress-rules" {
