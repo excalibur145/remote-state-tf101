@@ -7,23 +7,6 @@ resource "aws_vpc" "uj-vpc" {
 }
 
 
-locals {
-  ingress_rules = [
-    {
-      port        = 22
-      description = "SSH"
-    },
-    {
-      port        = 80
-      description = "HTTP"
-    },
-    {
-      port        = 443
-      description = "HTTPS"
-    }
-  ]
-}
-
 #Security group
 resource "aws_security_group" "allow-web" {
   name        = "web-traffic"
@@ -32,7 +15,7 @@ resource "aws_security_group" "allow-web" {
 
 
   dynamic "ingress" {
-    for_each = local.ingress_rules
+    for_each = var.ingress-rules
     iterator = rule
 
     content {
@@ -70,6 +53,8 @@ resource "aws_eip" "eip1" {
 }
 
 resource "aws_instance" "ubuntu" {
+ count = var.instance-count
+
   ami               = var.ec2_config.ami
   instance_type     = var.ec2_config.instance_type
   availability_zone = var.subnet_az
@@ -82,6 +67,6 @@ resource "aws_instance" "ubuntu" {
 
   user_data = var.user_data_script
   tags = {
-    Name = "web-server"
+    Name = "web-server  ${count.index}"
   }
 }

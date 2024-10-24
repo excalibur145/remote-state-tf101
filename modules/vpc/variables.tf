@@ -36,6 +36,36 @@ variable "user_data_script" {
 }
 
 variable "key-name" {
-  type        = string
   description = "add the name of your ppk key"
+  type        = string
+}
+
+
+variable "ingress-rules" {
+  description = "add your ingress rules port and description"
+  type= list(object({
+    port = number
+    description = string
+  }))
+
+  default = [
+    {
+      port        = 22
+      description = "SSH"
+    },
+    {
+      port        = 80
+      description = "HTTP"
+    },
+    {
+      port        = 443
+      description = "HTTPS"
+    }
+  ]
+}
+
+variable "instance-count" {
+  description = "number of instances"
+  type = number
+  default = 1
 }
