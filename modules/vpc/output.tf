@@ -6,6 +6,6 @@ output "sg" {
   value = aws_security_group.allow-web.id
 }
 
-output "key_name" {
-  value = aws_instance.ubuntu.key_name
+output "key_names" {
+  value = [for instance in aws_instance.ubuntu : instance.key_name]
 }

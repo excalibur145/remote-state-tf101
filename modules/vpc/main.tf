@@ -51,9 +51,7 @@ resource "aws_eip" "eip1" {
   ]
 
 }
-locals {
-  instance_name="${terraform.workspace}"
-}
+
 
 resource "aws_instance" "ubuntu" {
  count = var.instance-count
@@ -70,7 +68,6 @@ resource "aws_instance" "ubuntu" {
 
   user_data = var.user_data_script
   tags = {
-    Name = local.instance_name 
-    countNum = "web-server  ${count.index} " 
+    Name = " ${terraform.workspace}  ${count.index} " 
   }
 }
